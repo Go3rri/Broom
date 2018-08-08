@@ -13,6 +13,20 @@
 		B5508D43211B44CD0029D942 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5508D42211B44CD0029D942 /* Assets.xcassets */; };
 		B5508D46211B44CD0029D942 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5508D44211B44CD0029D942 /* LaunchScreen.storyboard */; };
 		B5508D49211B44CD0029D942 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5508D48211B44CD0029D942 /* main.m */; };
+		B5508D54211B48810029D942 /* offsetfinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5508D51211B48810029D942 /* offsetfinder.mm */; };
+		B5508D55211B48810029D942 /* v0rtex.m in Sources */ = {isa = PBXBuildFile; fileRef = B5508D53211B48810029D942 /* v0rtex.m */; };
+		B5508D5C211B489C0029D942 /* liboffsetfinder64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5508D57211B489C0029D942 /* liboffsetfinder64.a */; };
+		B5508D5D211B489C0029D942 /* libplist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5508D58211B489C0029D942 /* libplist.a */; };
+		B5508D5E211B489C0029D942 /* libplist++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5508D59211B489C0029D942 /* libplist++.a */; };
+		B5508D5F211B489C0029D942 /* libimg4tool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5508D5A211B489C0029D942 /* libimg4tool.a */; };
+		B5508D60211B489C0029D942 /* libmerged.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5508D5B211B489C0029D942 /* libmerged.a */; };
+		B5508D62211B48A30029D942 /* libcompression.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B5508D61211B48A30029D942 /* libcompression.tbd */; };
+		B5508D65211B49750029D942 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5508D64211B49750029D942 /* IOKit.framework */; };
+		B5508D68211B4B810029D942 /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B5508D67211B4B810029D942 /* utils.m */; };
+		B5508D6D211B4C800029D942 /* root-rw.m in Sources */ = {isa = PBXBuildFile; fileRef = B5508D6C211B4C800029D942 /* root-rw.m */; };
+		B5508D70211B4C9A0029D942 /* kernel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5508D6E211B4C9A0029D942 /* kernel.m */; };
+		B5508D73211B4ED60029D942 /* patchfinder64.c in Sources */ = {isa = PBXBuildFile; fileRef = B5508D72211B4ED60029D942 /* patchfinder64.c */; };
+		B5508D76211B52800029D942 /* amfi.m in Sources */ = {isa = PBXBuildFile; fileRef = B5508D74211B52800029D942 /* amfi.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +40,30 @@
 		B5508D45211B44CD0029D942 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5508D47211B44CD0029D942 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5508D48211B44CD0029D942 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B5508D4F211B48810029D942 /* liboffsetfinder64.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = liboffsetfinder64.hpp; sourceTree = "<group>"; };
+		B5508D50211B48810029D942 /* offsetfinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = offsetfinder.h; sourceTree = "<group>"; };
+		B5508D51211B48810029D942 /* offsetfinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = offsetfinder.mm; sourceTree = "<group>"; };
+		B5508D52211B48810029D942 /* v0rtex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = v0rtex.h; sourceTree = "<group>"; };
+		B5508D53211B48810029D942 /* v0rtex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = v0rtex.m; sourceTree = "<group>"; };
+		B5508D57211B489C0029D942 /* liboffsetfinder64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liboffsetfinder64.a; sourceTree = "<group>"; };
+		B5508D58211B489C0029D942 /* libplist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libplist.a; sourceTree = "<group>"; };
+		B5508D59211B489C0029D942 /* libplist++.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libplist++.a"; sourceTree = "<group>"; };
+		B5508D5A211B489C0029D942 /* libimg4tool.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libimg4tool.a; sourceTree = "<group>"; };
+		B5508D5B211B489C0029D942 /* libmerged.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmerged.a; sourceTree = "<group>"; };
+		B5508D61211B48A30029D942 /* libcompression.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcompression.tbd; path = usr/lib/libcompression.tbd; sourceTree = SDKROOT; };
+		B5508D63211B48B10029D942 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		B5508D64211B49750029D942 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
+		B5508D67211B4B810029D942 /* utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = utils.m; sourceTree = "<group>"; };
+		B5508D69211B4BC60029D942 /* iokit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iokit.h; sourceTree = "<group>"; };
+		B5508D6A211B4BE50029D942 /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		B5508D6B211B4C800029D942 /* root-rw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "root-rw.h"; sourceTree = "<group>"; };
+		B5508D6C211B4C800029D942 /* root-rw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "root-rw.m"; sourceTree = "<group>"; };
+		B5508D6E211B4C9A0029D942 /* kernel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kernel.m; sourceTree = "<group>"; };
+		B5508D6F211B4C9A0029D942 /* kernel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kernel.h; sourceTree = "<group>"; };
+		B5508D71211B4ED60029D942 /* patchfinder64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
+		B5508D72211B4ED60029D942 /* patchfinder64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = patchfinder64.c; sourceTree = "<group>"; };
+		B5508D74211B52800029D942 /* amfi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = amfi.m; sourceTree = "<group>"; };
+		B5508D75211B52800029D942 /* amfi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amfi.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +71,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5508D65211B49750029D942 /* IOKit.framework in Frameworks */,
+				B5508D62211B48A30029D942 /* libcompression.tbd in Frameworks */,
+				B5508D5C211B489C0029D942 /* liboffsetfinder64.a in Frameworks */,
+				B5508D5D211B489C0029D942 /* libplist.a in Frameworks */,
+				B5508D5E211B489C0029D942 /* libplist++.a in Frameworks */,
+				B5508D5F211B489C0029D942 /* libimg4tool.a in Frameworks */,
+				B5508D60211B489C0029D942 /* libmerged.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +89,7 @@
 			children = (
 				B5508D38211B44CB0029D942 /* Broom */,
 				B5508D37211B44CB0029D942 /* Products */,
+				B5508D56211B489C0029D942 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +104,46 @@
 		B5508D38211B44CB0029D942 /* Broom */ = {
 			isa = PBXGroup;
 			children = (
+				B5508D66211B49890029D942 /* views */,
+				B5508D75211B52800029D942 /* amfi.h */,
+				B5508D74211B52800029D942 /* amfi.m */,
+				B5508D63211B48B10029D942 /* common.h */,
+				B5508D69211B4BC60029D942 /* iokit.h */,
+				B5508D6F211B4C9A0029D942 /* kernel.h */,
+				B5508D6E211B4C9A0029D942 /* kernel.m */,
+				B5508D4F211B48810029D942 /* liboffsetfinder64.hpp */,
+				B5508D48211B44CD0029D942 /* main.m */,
+				B5508D50211B48810029D942 /* offsetfinder.h */,
+				B5508D51211B48810029D942 /* offsetfinder.mm */,
+				B5508D72211B4ED60029D942 /* patchfinder64.c */,
+				B5508D71211B4ED60029D942 /* patchfinder64.h */,
+				B5508D6B211B4C800029D942 /* root-rw.h */,
+				B5508D6C211B4C800029D942 /* root-rw.m */,
+				B5508D6A211B4BE50029D942 /* utils.h */,
+				B5508D67211B4B810029D942 /* utils.m */,
+				B5508D52211B48810029D942 /* v0rtex.h */,
+				B5508D53211B48810029D942 /* v0rtex.m */,
+			);
+			path = Broom;
+			sourceTree = "<group>";
+		};
+		B5508D56211B489C0029D942 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B5508D64211B49750029D942 /* IOKit.framework */,
+				B5508D61211B48A30029D942 /* libcompression.tbd */,
+				B5508D5A211B489C0029D942 /* libimg4tool.a */,
+				B5508D5B211B489C0029D942 /* libmerged.a */,
+				B5508D57211B489C0029D942 /* liboffsetfinder64.a */,
+				B5508D58211B489C0029D942 /* libplist.a */,
+				B5508D59211B489C0029D942 /* libplist++.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B5508D66211B49890029D942 /* views */ = {
+			isa = PBXGroup;
+			children = (
 				B5508D39211B44CC0029D942 /* AppDelegate.h */,
 				B5508D3A211B44CC0029D942 /* AppDelegate.m */,
 				B5508D3C211B44CC0029D942 /* ViewController.h */,
@@ -66,9 +152,8 @@
 				B5508D42211B44CD0029D942 /* Assets.xcassets */,
 				B5508D44211B44CD0029D942 /* LaunchScreen.storyboard */,
 				B5508D47211B44CD0029D942 /* Info.plist */,
-				B5508D48211B44CD0029D942 /* main.m */,
 			);
-			path = Broom;
+			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,8 +226,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5508D76211B52800029D942 /* amfi.m in Sources */,
+				B5508D6D211B4C800029D942 /* root-rw.m in Sources */,
+				B5508D73211B4ED60029D942 /* patchfinder64.c in Sources */,
 				B5508D3E211B44CC0029D942 /* ViewController.m in Sources */,
+				B5508D55211B48810029D942 /* v0rtex.m in Sources */,
 				B5508D49211B44CD0029D942 /* main.m in Sources */,
+				B5508D70211B4C9A0029D942 /* kernel.m in Sources */,
+				B5508D68211B4B810029D942 /* utils.m in Sources */,
+				B5508D54211B48810029D942 /* offsetfinder.mm in Sources */,
 				B5508D3B211B44CC0029D942 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,14 +377,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6EKJWC698P;
-				INFOPLIST_FILE = Broom/Info.plist;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Broom/views/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = zone.sparkes.Broom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = arm64;
 			};
 			name = Debug;
 		};
@@ -302,14 +401,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6EKJWC698P;
-				INFOPLIST_FILE = Broom/Info.plist;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Broom/views/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = zone.sparkes.Broom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = arm64;
 			};
 			name = Release;
 		};
