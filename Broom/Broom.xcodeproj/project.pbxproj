@@ -27,6 +27,8 @@
 		B5508D70211B4C9A0029D942 /* kernel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5508D6E211B4C9A0029D942 /* kernel.m */; };
 		B5508D73211B4ED60029D942 /* patchfinder64.c in Sources */ = {isa = PBXBuildFile; fileRef = B5508D72211B4ED60029D942 /* patchfinder64.c */; };
 		B5508D76211B52800029D942 /* amfi.m in Sources */ = {isa = PBXBuildFile; fileRef = B5508D74211B52800029D942 /* amfi.m */; };
+		B5508D79211B52D40029D942 /* untar.m in Sources */ = {isa = PBXBuildFile; fileRef = B5508D78211B52D40029D942 /* untar.m */; };
+		B5508D7B211B542E0029D942 /* eraser.tar in Resources */ = {isa = PBXBuildFile; fileRef = B5508D7A211B542E0029D942 /* eraser.tar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,9 @@
 		B5508D72211B4ED60029D942 /* patchfinder64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = patchfinder64.c; sourceTree = "<group>"; };
 		B5508D74211B52800029D942 /* amfi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = amfi.m; sourceTree = "<group>"; };
 		B5508D75211B52800029D942 /* amfi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amfi.h; sourceTree = "<group>"; };
+		B5508D77211B52D40029D942 /* untar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = untar.h; sourceTree = "<group>"; };
+		B5508D78211B52D40029D942 /* untar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = untar.m; sourceTree = "<group>"; };
+		B5508D7A211B542E0029D942 /* eraser.tar */ = {isa = PBXFileReference; lastKnownFileType = archive.tar; path = eraser.tar; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,10 +124,13 @@
 				B5508D71211B4ED60029D942 /* patchfinder64.h */,
 				B5508D6B211B4C800029D942 /* root-rw.h */,
 				B5508D6C211B4C800029D942 /* root-rw.m */,
+				B5508D77211B52D40029D942 /* untar.h */,
+				B5508D78211B52D40029D942 /* untar.m */,
 				B5508D6A211B4BE50029D942 /* utils.h */,
 				B5508D67211B4B810029D942 /* utils.m */,
 				B5508D52211B48810029D942 /* v0rtex.h */,
 				B5508D53211B48810029D942 /* v0rtex.m */,
+				B5508D7A211B542E0029D942 /* eraser.tar */,
 			);
 			path = Broom;
 			sourceTree = "<group>";
@@ -214,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5508D46211B44CD0029D942 /* LaunchScreen.storyboard in Resources */,
+				B5508D7B211B542E0029D942 /* eraser.tar in Resources */,
 				B5508D43211B44CD0029D942 /* Assets.xcassets in Resources */,
 				B5508D41211B44CC0029D942 /* Main.storyboard in Resources */,
 			);
@@ -228,6 +237,7 @@
 			files = (
 				B5508D76211B52800029D942 /* amfi.m in Sources */,
 				B5508D6D211B4C800029D942 /* root-rw.m in Sources */,
+				B5508D79211B52D40029D942 /* untar.m in Sources */,
 				B5508D73211B4ED60029D942 /* patchfinder64.c in Sources */,
 				B5508D3E211B44CC0029D942 /* ViewController.m in Sources */,
 				B5508D55211B48810029D942 /* v0rtex.m in Sources */,

@@ -8,30 +8,55 @@
 
 #import "ViewController.h"
 
+#include "amfi.h"
 #include "kernel.h"
 #include "offsetfinder.h"
 #include "patchfinder64.h"
 #include "root-rw.h"
+#include "untar.h"
 #include "utils.h"
 #include "v0rtex.h"
 
+#include <dlfcn.h>
+#include <sys/stat.h>
+
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *goButton;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 @end
 
 @implementation ViewController
 
-offsets_t *offsets = NULL;
+NSString *Version = @"Broom: v1.0.0 - by PsychoTea, w/ thanks to saurik";
+BOOL allowedToRun = TRUE;
 
-task_t kernel_task;
+offsets_t offsets;
+
+task_t   kernel_task;
 uint64_t kernel_base;
 uint64_t kernel_slide;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    [self.versionLabel setText:Version];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        int waitTime;
+        while ((waitTime = 90 - uptime()) > 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.goButton setTitle:[NSString stringWithFormat:@"wait: %ds", waitTime] forState:UIControlStateNormal];
+            });
+            allowedToRun = FALSE;
+            sleep(1);
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.goButton setTitle:@"go" forState:UIControlStateNormal];
+        });
+        allowedToRun = TRUE;
+    });
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -39,20 +64,37 @@ uint64_t kernel_slide;
 }
 
 - (IBAction)goButtonPressed:(UIButton *)button {
-    kern_return_t kret;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [self makeShitHappen];
+    });
+}
+
+- (void)makeShitHappen {
     int ret;
+    kern_return_t kret;
+    
+    if (allowedToRun == FALSE) return;
+    
+    allowedToRun = FALSE;
+    [self.goButton setAlpha:0.7];
     
     [self updateStatus:@"running..."];
     
     // grab offsets via liboffsetfinder64
-    offsets = get_offsets();
+    // this is retarded
+    offsets_t *offs = get_offsets();
+    offsets = *offs;
+    
     [self updateStatus:@"grabbed offsets"];
     
     // suspend app
     suspend_all_threads();
     
     // run v0rtex
-    kret = v0rtex(offsets, &v0rtex_callback, NULL);
+    kret = v0rtex(&offsets, &v0rtex_callback, NULL);
+    
+    // resume app
+    resume_all_threads();
     
     if (kret != KERN_SUCCESS) {
         [self updateStatus:@"v0rtex failed, rebooting..."];
@@ -61,20 +103,15 @@ uint64_t kernel_slide;
         return;
     }
     
-    resume_all_threads();
-    
     [self updateStatus:@"v0rtex success!"];
     
-    // initialize patchfinder64
+    // initialize patchfinder64 & amfi stuff
     init_patchfinder(NULL, kernel_base);
-    
-    unsigned cmdline_offset;
-    LOG("find_boot_args returned: %llx", find_boot_args(&cmdline_offset));
-    LOG("cmdline offset: %d", cmdline_offset);
+    init_amfi();
     
     // initialize kernel.m stuff
-    uint64_t kernel_task_addr = rk64(offsets->kernel_task + kernel_slide);
-    uint64_t kern_proc = rk64(kernel_task_addr + offsets->task_bsd_info);
+    uint64_t kernel_task_addr = rk64(offs->kernel_task + kernel_slide);
+    uint64_t kern_proc = rk64(kernel_task_addr + offs->task_bsd_info);
     setup_kernel_tools(kernel_task, kern_proc);
     
     [self updateStatus:@"initialized patchfinders, etc"];
@@ -82,7 +119,7 @@ uint64_t kernel_slide;
     // remount '/' as r/w
     NSOperatingSystemVersion osVersion = [[NSProcessInfo processInfo] operatingSystemVersion];
     int pre103 = osVersion.minorVersion < 3 ? 1 : 0;
-    ret = mount_root(kernel_slide, offsets->root_vnode, pre103);
+    ret = mount_root(kernel_slide, offs->root_vnode, pre103);
     
     if (ret != 0) {
         [self updateStatus:@"failed to remount disk0s1s1: %d", ret];
@@ -94,21 +131,88 @@ uint64_t kernel_slide;
         [self updateStatus:@"failed to remount disk0s1s1"];
         return;
     }
+    unlink("/.broom_test_file");
     
     execprog("/sbin/mount", NULL);
     
     [self updateStatus:@"remounted successfully"];
     
-    // extract Eraser.app to /Applications
+    ret = chdir("/Applications");
+    if (ret != 0) {
+        [self updateStatus:@"failed to change dir to /Applications"];
+        return;
+    }
     
+    // TODO: sanity checks
+    const char *eraser_tar_path = bundled_file("eraser.tar");
+    if (strlen(eraser_tar_path) < 5) {
+        [self updateStatus:@"failed to get eraser.tar file"];
+        return;
+    }
+    
+    FILE *fd = fopen(eraser_tar_path, "r");
+    if (fd == NULL) {
+        [self updateStatus:@"failed to open eraser.tar file"];
+        return;
+    }
+    
+    // Extrct tar & close the handle
+    untar(fd, "/Applications");
+    fclose(fd);
+    
+#define ERASER_MAIN "/Applications/Eraser.app/Eraser"
+#define ERASER_LIB  "/Applications/Eraser.app/Eraser.dylib"
     
     // give +s bit & root:wheel to Eraser.app/Eraser
+    inject_trust(ERASER_MAIN);
+    inject_trust(ERASER_LIB);
+    
+    chmod(ERASER_MAIN, 6755);
+    chmod(ERASER_LIB, 0755);
+    
+    chown(ERASER_MAIN, 0, 0);
+    chown(ERASER_LIB, 0, 0);
+    
+    // Eraser fix
+    mkdir("/var/stash", 0755);
+    
+    [self updateStatus:@"done!"];
+    
+    // TODO: automatically launch app?
+    // run uicache
+    
+    // Credit to @insidegui on GitHub
+    
+    // I'm using dlopen to avoid having to link directly to SpringBoardServices
+    void *spbsHandle = dlopen("/System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices", RTLD_GLOBAL);
+    
+    if (!spbsHandle) {
+        printf("ERROR: Failed to get SpringBoardServices handle:\n%s\n", dlerror());
+        return;
+    }
+    
+    CFStringRef identifier = CFStringCreateWithCString(kCFAllocatorDefault, "com.saurik.Eraser", kCFStringEncodingUTF8);
+    if (!identifier) {
+        printf("ERROR: Unable to parse bundle identifier\n");
+        return;
+    }
+    
+    int(*SBSLaunchApplicationWithIdentifier)(CFStringRef identifier, bool flag) = dlsym(spbsHandle, "SBSLaunchApplicationWithIdentifier");
+    
+    int result = SBSLaunchApplicationWithIdentifier(identifier, FALSE);
+    
+    dlclose(spbsHandle);
+    
+    if (result != 0) {
+        printf("Launch failed. Error code %d\n", result);
+        return;
+    }
 }
 
 kern_return_t v0rtex_callback(task_t tfp0, kptr_t kbase, void *cb_data) {
     kernel_task = tfp0;
     kernel_base = kbase;
-    kernel_slide = kernel_base - offsets->base;
+    kernel_slide = kernel_base - offsets.base;
     
     return KERN_SUCCESS;
 }
@@ -119,7 +223,10 @@ kern_return_t v0rtex_callback(task_t tfp0, kptr_t kbase, void *cb_data) {
     
     text = [[NSString alloc] initWithFormat:text arguments:args];
     
-    [self.goButton setTitle:text forState:UIControlStateNormal];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.goButton setTitle:text forState:UIControlStateNormal];
+    });
+
     NSLog(@"%@", text);
 
     va_end(args);

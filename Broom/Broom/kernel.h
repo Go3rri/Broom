@@ -55,6 +55,8 @@ kern_return_t mach_vm_region(vm_map_t target_task,
 
 kern_return_t bootstrap_look_up(mach_port_t port, const char *service, mach_port_t *server_port);
 
+extern task_t tfp0;
+
 void setup_kernel_tools(task_t kernel_task, uint64_t kernel_proc);
 uint64_t find_proc_by_pid(pid_t pid);
 size_t kread(uint64_t where, void *p, size_t size);

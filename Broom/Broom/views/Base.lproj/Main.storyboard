@@ -50,6 +50,12 @@
                                     <action selector="goButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="quz-3A-REe"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VERSION LABEL TEXT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKW-mH-6jq">
+                                <rect key="frame" x="16" y="536" width="298" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" red="0.49365482233502533" green="0.49365482233502533" blue="0.49365482233502533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -59,13 +65,17 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="npl-vx-y5T" secondAttribute="bottom" constant="146" id="KdE-Su-IZp"/>
                             <constraint firstItem="fUa-eD-KMU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Uqj-DK-GlP"/>
                             <constraint firstItem="fUa-eD-KMU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="68" id="eDh-zK-C84"/>
+                            <constraint firstItem="KKW-mH-6jq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="lbo-Zb-STc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="KKW-mH-6jq" secondAttribute="bottom" constant="20" id="m7N-UH-FIi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="npl-vx-y5T" secondAttribute="trailing" constant="16" id="n6G-6l-xjG"/>
                             <constraint firstItem="npl-vx-y5T" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="o7M-b6-Jqa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KKW-mH-6jq" secondAttribute="trailing" constant="6" id="sd4-hv-rh8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="goButton" destination="npl-vx-y5T" id="y4C-WH-OJa"/>
+                        <outlet property="versionLabel" destination="KKW-mH-6jq" id="uVj-qG-RS4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

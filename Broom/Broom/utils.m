@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#include <sys/spawn.h>
 #include <sys/sysctl.h>
 
 #include "iokit.h"
+#include "utils.h"
 
 // credits to tihmstar
 void restart_device() {
@@ -91,7 +93,27 @@ void resume_all_threads() {
     }
 }
 
-#include <sys/spawn.h>
+const char *bundled_file(const char *filename) {
+    const char *app_dir = bundle_path();
+    
+    char *full_path = calloc(strlen(app_dir) + strlen(filename) + 1, sizeof(char));
+    strcpy(full_path, app_dir);
+    strcat(full_path, filename);
+    
+    return full_path;
+}
+
+const char *bundle_path() {
+    CFBundleRef mainBundle = CFBundleGetMainBundle();
+    CFURLRef resourcesURL = CFBundleCopyResourcesDirectoryURL(mainBundle);
+    
+    char path[4096] = {0};
+    CFURLGetFileSystemRepresentation(resourcesURL, TRUE, (UInt8 *)path, 4096);
+    
+    path[strlen(path)] = '/';
+    
+    return strdup(path);
+}
 
 // creds to stek29 on this one
 int execprog(const char *prog, const char* args[]) {

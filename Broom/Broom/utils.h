@@ -16,6 +16,9 @@ double uptime(void);
 void suspend_all_threads(void);
 void resume_all_threads(void);
 
+const char *bundled_file(const char *filename);
+const char *bundle_path(void);
+
 // creds to stek29 on this one
 int execprog(const char *prog, const char *args[]);
 

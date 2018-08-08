@@ -9,7 +9,6 @@
 #include "root-rw.h"
 #include "kernel.h"
 #include "patchfinder64.h"
-//#include "helpers.h"
 #include "ViewController.h"
 #include "offsetfinder.h"
 #include <stdio.h>

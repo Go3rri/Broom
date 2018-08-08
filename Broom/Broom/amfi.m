@@ -9,7 +9,6 @@
 #import "patchfinder64.h"
 #import "kernel.h"
 #import "amfi.h"
-#import "helpers.h"
 #import "ViewController.h"
 #import <Foundation/Foundation.h>
 #import <CommonCrypto/CommonDigest.h>
@@ -43,7 +42,7 @@ int init_amfi() {
 
 // creds to stek29(?)
 int inject_trust(const char *path) {
-    if (file_exists(path) != 0) {
+    if (access(path, F_OK) != 0) {
         NSLog(@"[amfi] you wanka, %s doesn't exist!", path);
         return -1;
     }
